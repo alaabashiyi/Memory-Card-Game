@@ -11,15 +11,14 @@ document.querySelector('main').addEventListener('click',(event)=>{
                     checkMatch(active);
         }
 
-        if(event.target.classList.contains('submit')){
-            let levelChoice = Number(document.querySelector('#level').value);
-                startGame(levelChoice);
-        }
+            if(event.target.classList.contains('submit')){
+                    startGame(levelChoice);
+            }
 
-        if(event.target.classList.contains('restart')){
-            document.querySelector('.end-game').style.visibility = 'hidden';
-                document.querySelector('.overlay').style.visibility = 'visible';
-        }
+                if(event.target.classList.contains('restart')){
+                    document.querySelector('.end-game').style.visibility = 'hidden';
+                        document.querySelector('.overlay').style.visibility = 'visible';
+                }
      
         
 });
