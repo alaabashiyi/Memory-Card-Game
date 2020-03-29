@@ -1,25 +1,24 @@
 
-// contains the flipped cards
+// contains the flipped cards.
 let active = [];
 
-//Event Listener just to start the game.
-document.querySelector('.submit').addEventListener('click',()=>{
-        let levelChoice = Number(document.querySelector('#level').value);
-        startGame(levelChoice);
-});
-
-document.querySelector('.restart').addEventListener('click',()=>{
-    document.querySelector('.end-game').style.visibility = 'hidden';
-    document.querySelector('.overlay').style.visibility = 'visible';
-});
-
 //Event listener for all clicks inside the container and flip cards on click.
-document.querySelector('.container').addEventListener('click',(event)=>{
-
+document.querySelector('main').addEventListener('click',(event)=>{
+    let levelChoice = Number(document.querySelector('#level').value);
         if(event.target.classList.contains('front-img')){
             setTimeout(()=>{ event.target.parentNode.classList.toggle('flipflap');},200)
-            active.push(event.target.parentNode);
-            checkMatch(active);
+                active.push(event.target.parentNode);
+                    checkMatch(active);
+        }
+
+        if(event.target.classList.contains('submit')){
+            let levelChoice = Number(document.querySelector('#level').value);
+                startGame(levelChoice);
+        }
+
+        if(event.target.classList.contains('restart')){
+            document.querySelector('.end-game').style.visibility = 'hidden';
+                document.querySelector('.overlay').style.visibility = 'visible';
         }
      
         
@@ -41,6 +40,7 @@ function checkMatch(arr) {
 
 }
 
+//Function that starts the game.
 function startGame(choice){
     document.querySelector('.overlay').style.visibility = 'hidden';
     createBoard(choice);
@@ -76,6 +76,7 @@ function shuffleCards(cards,checkNames){
         });  
 }
 
+//This function ends and restart ther game.
 function endGame(){
     let cards = [...document.querySelectorAll('.done')];
     let levelChoice = Number(document.querySelector('#level').value);
