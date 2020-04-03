@@ -28,9 +28,10 @@ class Start {
   }
 
   //Function that starts the game.
-  startTheGame(choice) {
+  startTheGame() {
+    let levelChoice = Number(document.querySelector("#level").value);
     document.querySelector(".overlay").style.visibility = "hidden";
-    createBoard.createTheBoard(choice);
+    createBoard.createTheBoard(levelChoice);
   }
 }
 
@@ -121,7 +122,4 @@ const createBoard = new CreateBoard();
 const checkMatch = new CheckAndEnd();
 
 startGame.eventListeners();
-
-createBoard.createTheBoard();
-
 checkMatch.checkIfMatch(active);
