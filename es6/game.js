@@ -5,8 +5,9 @@ class Start {
   //Event listener for all clicks inside the container and flip cards on click.
   eventListeners() {
     //Event listener for all clicks inside the container and flip cards on click.
+    let levelChoice = Number(document.querySelector("#level").value);
+
     document.querySelector("main").addEventListener("click", event => {
-      let levelChoice = Number(document.querySelector("#level").value);
       if (event.target.classList.contains("front-img")) {
         setTimeout(() => {
           event.target.parentNode.classList.toggle("flipflap");
@@ -16,7 +17,7 @@ class Start {
       }
 
       if (event.target.classList.contains("submit")) {
-        startGame.startTheGame(levelChoice);
+        this.startTheGame(levelChoice);
       }
 
       if (event.target.classList.contains("restart")) {
@@ -24,8 +25,6 @@ class Start {
         document.querySelector(".overlay").style.visibility = "visible";
       }
     });
-
-    return levelChoice;
   }
 
   //Function that starts the game.
@@ -122,10 +121,7 @@ const createBoard = new CreateBoard();
 const checkMatch = new CheckAndEnd();
 
 startGame.eventListeners();
-startGame.startTheGame(startGame.eventListeners());
 
 createBoard.createTheBoard();
-createBoard.shuffleCards();
 
 checkMatch.checkIfMatch(active);
-checkMatch.endGame();
