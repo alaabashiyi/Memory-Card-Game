@@ -7,13 +7,13 @@ class Start {
     //Event listener for all clicks inside the container and flip cards on click.
     let levelChoice = Number(document.querySelector("#level").value);
 
-    document.querySelector("main").addEventListener("click", event => {
+    document.querySelector("main").addEventListener("click", (event) => {
       if (event.target.classList.contains("front-img")) {
         setTimeout(() => {
           event.target.parentNode.classList.toggle("flipflap");
         }, 250);
         active.push(event.target.parentNode);
-        checkMatch.checkIfMatch(active);
+        CheckAndEnd.checkIfMatch(active);
       }
 
       if (event.target.classList.contains("submit")) {
@@ -31,7 +31,7 @@ class Start {
   startTheGame() {
     let levelChoice = Number(document.querySelector("#level").value);
     document.querySelector(".overlay").style.visibility = "hidden";
-    createBoard.createTheBoard(levelChoice);
+    CreateBoard.createTheBoard(levelChoice);
   }
 }
 
@@ -66,7 +66,7 @@ class CreateBoard {
       "snorlax",
       "dog",
       "flappybird",
-      "cat"
+      "cat",
     ];
 
     this.shuffleCards(allCards, typeNames);
@@ -91,13 +91,13 @@ class CheckAndEnd {
     if (arr.length == 2) {
       setTimeout(() => {
         if (arr[0].type == arr[1].type) {
-          arr.forEach(cur => {
+          arr.forEach((cur) => {
             cur.classList.add("done");
           });
           console.log("Match!!!");
           this.endGame();
         }
-        arr.forEach(cur => {
+        arr.forEach((cur) => {
           cur.classList.toggle("flipflap");
         });
         active = [];
@@ -117,9 +117,9 @@ class CheckAndEnd {
   }
 }
 
-const startGame = new Start();
-const createBoard = new CreateBoard();
-const checkMatch = new CheckAndEnd();
+// const startGame = new Start();
+// const createBoard = new CreateBoard();
+// const checkMatch = new CheckAndEnd();
 
-startGame.eventListeners();
-checkMatch.checkIfMatch(active);
+Start.eventListeners();
+CheckAndEnd.checkIfMatch(active);
